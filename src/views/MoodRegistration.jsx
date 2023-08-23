@@ -1,6 +1,13 @@
+import NavBar from "../Components/NavBar";
+import RegisterMoodForm from "../Components/RegisterMoodForm";
+
 const MoodRegistration = () => {
   return (
-   <div>Hola mood</div> 
+    <>
+   <NavBar />
+   <RegisterMoodForm />
+   </>
+
   )
 }
 
