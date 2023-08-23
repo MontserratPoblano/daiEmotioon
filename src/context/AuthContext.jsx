@@ -1,7 +1,10 @@
-// src/context/AuthContext.js
 import { createContext, useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
-import PropTypes from "prop-types"; // Importa PropTypes
+import PropTypes from "prop-types";
 
 export const AuthContext = createContext();
 
@@ -10,11 +13,11 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const signUp = async (email, password) => {
-    await auth.createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(auth, email, password);
   };
 
   const logIn = async (email, password) => {
-    await auth.signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(auth, email, password);
   };
 
   const logOut = () => {
@@ -37,13 +40,13 @@ export const AuthProvider = ({ children }) => {
     signUp,
     logIn,
     logOut,
-    loading
+    loading,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 AuthProvider.propTypes = {
-  children: PropTypes.node.isRequired, // Valida la presencia de 'children'
+  children: PropTypes.node.isRequired,
 };
 
 export default AuthProvider;
