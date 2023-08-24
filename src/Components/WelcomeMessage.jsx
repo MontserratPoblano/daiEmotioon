@@ -4,15 +4,13 @@ import { PropTypes } from "prop-types";
 function WelcomeMessage({ username }) {
   return (
     <Typography variant="h6" color="textSecondary" align="center" gutterBottom>
-      ¡Bienvenido, {username}!
+      ¡Welcome, {username}!
     </Typography>
   );
 }
 
 WelcomeMessage.propTypes = {
-    username: PropTypes.string.isRequired,
-    
-  };
-  
+  username: PropTypes.string.isRequired,
+};
 
 export default WelcomeMessage;

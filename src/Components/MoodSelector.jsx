@@ -52,7 +52,7 @@ function MoodSelector({ onShowDailyInput, onMoodChange }) {
   return (
     <Grid container spacing={2}>
       {moods.map((mood) => (
-        <Grid item xs={3} sm={6} md={4} key={mood.value}>
+        <Grid item xs={4} sm={6} md={4} key={mood.value}>
           <Card
             onClick={() => {
               handleMoodClick(mood.value);

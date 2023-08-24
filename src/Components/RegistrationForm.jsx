@@ -14,7 +14,7 @@ const backgroundStyle = {
 function RegistrationForm() {
   const { signUp } = useAuth();
   const navigate = useNavigate();
-  const [user, setUser] = useState({
+  const [user, setUser] = useState({  
     email: "",
     password: "",
     name: "",
@@ -23,7 +23,7 @@ function RegistrationForm() {
 
   const handleRegistration = async () => {
     try {
-      await signUp(user.email, user.password); // Reemplaza con tu lógica de registro
+      await signUp(user.email, user.password,user.name); // Reemplaza con tu lógica de registro
       navigate("/"); // Redirige después de registrarse
     } catch (error) {
       setError("Error registering. Please try again.");
