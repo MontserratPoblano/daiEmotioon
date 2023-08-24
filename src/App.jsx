@@ -19,7 +19,9 @@ function App() {
           <MoodRegistration />
         </ProtectedRouted >}>
           </Route>
-        <Route path="/trends" element={<Trends />} />
+        <Route path="/trends" element={<ProtectedRouted>
+          <Trends />
+          </ProtectedRouted>} />
       </Routes>
     </BrowserRouter>
     </AuthProvider>

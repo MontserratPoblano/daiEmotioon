@@ -1,24 +1,53 @@
-import { AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Divider, Button } from "@mui/material";
+import { useState } from "react";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  Button,
+  ListItemText,
+  Divider,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import WelcomeMessage from "./WelcomeMessage";
 import { Link } from "react-router-dom";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { useState } from "react";
-import WelcomeMessage from "./WelcomeMessage";
+import logo2 from "../assets/logo2.png";
+import useAuth from "../context/authFunctions";
+import { useNavigate } from "react-router-dom";
 function NavBar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { currentUser,logOut } = useAuth();
+  const navigate = useNavigate();
 
   const toggleDrawer = (open) => () => {
     setIsDrawerOpen(open);
   };
 
+  const handleLogOut = async ()=>{
+    try{
+      await logOut
+      navigate("/")
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{ backgroundColor: "#96dbfd" }}>
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+        <IconButton
+          edge="start"
+          color="#32468c"
+          aria-label="menu"
+          onClick={toggleDrawer(true)}
+        >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6">My App</Typography>
-        <WelcomeMessage />
+        <WelcomeMessage username={currentUser.displayName  || currentUser.email} />
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
           <div
             role="presentation"
@@ -26,6 +55,19 @@ function NavBar() {
             onKeyDown={toggleDrawer(false)}
           >
             <List>
+              <ListItem>
+                <ListItemIcon>
+                  <img
+                    src={logo2}
+                    alt="Logo"
+                    style={{
+                      width: "150px",
+                      maxWidth: "100%",
+                      marginRight: "10px",
+                    }}
+                  />
+                </ListItemIcon>
+              </ListItem>
               <ListItem>
                 <Button component={Link} to="/register-mood" fullWidth>
                   <ListItemText primary="Mood Register" />
@@ -43,7 +85,7 @@ function NavBar() {
               </ListItem>
               <Divider />
               <ListItem>
-                <Button onClick={() => console.log("Cerrar Sesión")} fullWidth>
+                <Button onClick={handleLogOut} fullWidth>
                   <ExitToAppIcon />
                   <ListItemText primary="Log Out" />
                 </Button>
@@ -57,6 +99,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
-
-

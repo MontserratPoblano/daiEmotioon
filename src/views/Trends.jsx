@@ -1,9 +1,9 @@
 
-
+import NavBar from "../Components/NavBar";
 function Trends() {
   return (
     <>
-      hola trends
+      <NavBar/>
     </>
   );
 }

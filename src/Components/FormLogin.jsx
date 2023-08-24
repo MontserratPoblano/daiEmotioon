@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/authFunctions";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Snackbar } from "@mui/material";
 import GoogleButton from "react-google-button";
+import MuiAlert from "@mui/material/Alert";
 
 const backgroundStyle = {
   width: "40%",
@@ -13,23 +14,43 @@ const backgroundStyle = {
 };
 
 function FormLogin() {
-  const { logIn } = useAuth();
+  const { logIn, logInWithGoogle } = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  const handleSnackbarOpen = () => {
+    setSnackbarOpen(true);
+  };
 
   const handleLogin = async () => {
     try {
       await logIn(user.email, user.password);
-      console.log("Login successful");
-      navigate("/register-mood");
+      handleSnackbarOpen();
     } catch (error) {
       setError("Error logging in. Please verify your credentials.");
     }
   };
+
+  const handleSnackbarExited = () => {
+    setSnackbarOpen(false);
+    navigate("/register-mood");
+  };
+
+  const handleLoginWithGoogle = async() =>{
+    try {
+      await logInWithGoogle()
+    navigate("/register-mood");
+    }
+    catch(error){
+      setError(error)
+    }
+
+  }
 
   return (
     <div style={backgroundStyle}>
@@ -75,12 +96,30 @@ function FormLogin() {
             width: "100%",
             boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.16)",
           }}
-          onClick={() => console.log("Iniciar sesión con Google")}
+          onClick={handleLoginWithGoogle}
         />
       </div>
       <div style={{ marginTop: "20px", textAlign: "center" }}>
         ¿Do not have an account? <Link to="/SignUp">Sign Up here</Link>
       </div>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={1000}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleSnackbarExited}
+          severity="success"
+          style={{ backgroundColor: "#03bb85", color: "#fff" }}
+        >
+         Successful login!
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 }
