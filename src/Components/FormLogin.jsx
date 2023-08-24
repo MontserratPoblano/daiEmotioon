@@ -15,13 +15,12 @@ const backgroundStyle = {
 function FormLogin() {
   const { logIn } = useAuth();
   const navigate = useNavigate();
-  const [user,setUser] =useState({
-    email:"",
-    password:""
-  })
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState("");
 
-    
   const handleLogin = async () => {
     try {
       await logIn(user.email, user.password);
@@ -61,9 +60,9 @@ function FormLogin() {
         style={{
           backgroundColor: "#96dbfd",
           color: "#32468c",
-          fontWeight:"bold",
+          fontWeight: "bold",
           width: "100%",
-          height:"40px",
+          height: "40px",
           boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.22)",
         }}
         onClick={handleLogin}

@@ -1,12 +1,12 @@
 import { PropTypes } from "prop-types";
-import { Card, CardContent, Typography, Grid } from "@mui/material";
+import { Card, CardContent, Typography, Grid, Button } from "@mui/material";
 import {
   SentimentVerySatisfied,
   SentimentSatisfied,
   SentimentDissatisfied,
 } from "@mui/icons-material";
 
-function MoodSelector({ onMoodChange }) {
+function MoodSelector({ onShowDailyInput, onMoodChange }) {
   const moods = [
     {
       value: "happy",
@@ -45,12 +45,18 @@ function MoodSelector({ onMoodChange }) {
     },
   ];
 
+  const handleMoodClick = (value) => {
+    onMoodChange(value);
+  };
+
   return (
     <Grid container spacing={2}>
       {moods.map((mood) => (
         <Grid item xs={3} sm={6} md={4} key={mood.value}>
           <Card
-            onClick={() => onMoodChange(mood.value)}
+            onClick={() => {
+              handleMoodClick(mood.value);
+            }}
             style={{ cursor: "pointer" }}
           >
             <CardContent>
@@ -64,13 +70,23 @@ function MoodSelector({ onMoodChange }) {
           </Card>
         </Grid>
       ))}
+      <Grid item xs={12} sm={12} md={12}>
+        <Button
+          variant="contained"
+          align="right"
+          color="primary"
+          onClick={onShowDailyInput}
+        >
+          Next
+        </Button>
+      </Grid>
     </Grid>
   );
 }
 
 MoodSelector.propTypes = {
-  selectedMood: PropTypes.string.isRequired,
   onMoodChange: PropTypes.func.isRequired,
+  onShowDailyInput: PropTypes.func.isRequired,
 };
 
 export default MoodSelector;
