@@ -1,6 +1,7 @@
 import NavBar from "../Components/NavBar";
 import RegisterMoodForm from "../Components/RegisterMoodForm";
 
+
 const MoodRegistration = () => {
   return (
     <>

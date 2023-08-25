@@ -18,6 +18,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import logo2 from "../assets/logo2.png";
 import useAuth from "../context/authFunctions";
 import { useNavigate } from "react-router-dom";
+
 function NavBar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { currentUser,logOut } = useAuth();

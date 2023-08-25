@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../context/authFunctions";
-import { Button, TextField, Link, Typography } from "@mui/material";
+import { Button, TextField, Link, Typography, Snackbar } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
 
 const backgroundStyle = {
   width: "40%",
@@ -14,20 +15,30 @@ const backgroundStyle = {
 function RegistrationForm() {
   const { signUp } = useAuth();
   const navigate = useNavigate();
-  const [user, setUser] = useState({  
+  const [user, setUser] = useState({
     email: "",
     password: "",
     name: "",
   });
   const [error, setError] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  const handleSnackbarOpen = () => {
+    setSnackbarOpen(true);
+  };
 
   const handleRegistration = async () => {
     try {
-      await signUp(user.email, user.password,user.name); // Reemplaza con tu lógica de registro
-      navigate("/"); // Redirige después de registrarse
+      await signUp(user.email, user.password, user.name);
+      handleSnackbarOpen();
     } catch (error) {
       setError("Error registering. Please try again.");
     }
+  };
+
+  const handleSnackbarExited = () => {
+    setSnackbarOpen(false);
+    navigate("/");
   };
 
   return (
@@ -84,6 +95,24 @@ function RegistrationForm() {
       <div style={{ marginTop: "20px", textAlign: "center" }}>
         Already have an account? <Link href="/">Login here</Link>
       </div>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleSnackbarExited}
+          severity="success"
+          style={{ backgroundColor: "#03bb85", color: "#fff" }}
+        >
+          Successful register!
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 }

@@ -41,22 +41,20 @@ function FormLogin() {
     navigate("/register-mood");
   };
 
-  const handleLoginWithGoogle = async() =>{
+  const handleLoginWithGoogle = async () => {
     try {
-      await logInWithGoogle()
-    navigate("/register-mood");
+      await logInWithGoogle();
+      navigate("/register-mood");
+    } catch (error) {
+      setError(error);
     }
-    catch(error){
-      setError(error)
-    }
-
-  }
+  };
 
   return (
     <div style={backgroundStyle}>
       <h2 style={{ color: "#32468C", fontSize: "20px" }}>
-        Welcome to DaiEmotioon, where happiness is a habit! Login to your
-        account now to start your experience.
+        Welcome to DaiEmotioon, Login to your account now to start your
+        experience.
       </h2>
       <TextField
         label="Email"
@@ -117,7 +115,7 @@ function FormLogin() {
           severity="success"
           style={{ backgroundColor: "#03bb85", color: "#fff" }}
         >
-         Successful login!
+          Successful login!
         </MuiAlert>
       </Snackbar>
     </div>

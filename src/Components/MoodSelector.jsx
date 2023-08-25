@@ -2,9 +2,11 @@ import { PropTypes } from "prop-types";
 import { Card, CardContent, Typography, Grid, Button } from "@mui/material";
 import {
   SentimentVerySatisfied,
-  SentimentSatisfied,
-  SentimentDissatisfied,
+  SentimentVeryDissatisfied ,
+  SentimentNeutral
 } from "@mui/icons-material";
+
+import MoodBad from "@mui/icons-material/MoodBad"
 
 function MoodSelector({ onShowDailyInput, onMoodChange }) {
   const moods = [
@@ -14,33 +16,29 @@ function MoodSelector({ onShowDailyInput, onMoodChange }) {
       icon: (
         <SentimentVerySatisfied fontSize="large" style={{ color: "#FFC107" }} />
       ),
+    }, 
+    {
+      value: "neutral",
+      label: "Neutral",
+      icon: <SentimentNeutral fontSize="large" style={{ color: "#FFC107" }} />,
     },
     {
       value: "sad",
       label: "Sad",
       icon: (
-        <SentimentSatisfied fontSize="large" style={{ color: "#2196F3" }} />
+        <SentimentVeryDissatisfied fontSize="large" style={{ color: "#2196F3" }} />
       ),
     },
     {
       value: "angry",
       label: "Angry",
-      icon: (
-        <SentimentDissatisfied fontSize="large" style={{ color: "#B81414" }} />
-      ),
+      icon: <MoodBad fontSize="large" style={{ color: "#B81414" }} />
     },
     {
       value: "relaxed",
       label: "Relaxed",
       icon: (
         <SentimentVerySatisfied fontSize="large" style={{ color: "#6DC36D" }} />
-      ),
-    },
-    {
-      value: "excited",
-      label: "Excited",
-      icon: (
-        <SentimentSatisfied fontSize="large" style={{ color: "#FF8000" }} />
       ),
     },
   ];
