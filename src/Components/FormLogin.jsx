@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/authFunctions";
-import { Button, TextField, Snackbar } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Snackbar,
+  Typography,
+  Container,
+} from "@mui/material";
 import GoogleButton from "react-google-button";
 import MuiAlert from "@mui/material/Alert";
 
-const backgroundStyle = {
-  width: "40%",
-  height: "auto",
-  marginLeft: "20%",
-  padding: "20px",
-  color: "#32468",
-};
-
-function FormLogin() {
+const FormLogin = () => {
   const { logIn, logInWithGoogle } = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -51,11 +49,28 @@ function FormLogin() {
   };
 
   return (
-    <div style={backgroundStyle}>
-      <h2 style={{ color: "#32468C", fontSize: "20px" }}>
-        Welcome to DaiEmotioon, Login to your account now to start your
-        experience.
-      </h2>
+    <Container
+      maxWidth="sm"
+      style={{
+        width: "100%",
+        marginLeft: "10px",
+        padding: "20px",
+        height: "auto",
+        borderRadius: "10px",
+        border: "2px solid #d8dadc",
+        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
+      }}
+    >
+      <Typography
+        style={{
+          color: "#0b6faa",
+          fontSize: "25px",
+          fontFamily: "Cormorant Garamond, serif",
+          fontWeight: "bold",
+        }}
+      >
+        Login to your account now to start your experience.
+      </Typography>
       <TextField
         label="Email"
         variant="outlined"
@@ -63,6 +78,11 @@ function FormLogin() {
         value={user.email}
         onChange={(e) => setUser({ ...user, email: e.target.value })}
         margin="normal"
+        InputProps={{
+          style: {
+            fontFamily: "Cormorant Garamond, serif",
+          },
+        }}
       />
       <TextField
         label="Password"
@@ -72,17 +92,24 @@ function FormLogin() {
         value={user.password}
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         margin="normal"
+        InputProps={{
+          style: {
+            fontFamily: "Cormorant Garamond, serif",
+          },
+        }}
       />
       {error && <p style={{ color: "red", padding: "10px" }}>{error}</p>}
       <Button
         variant="contained"
         style={{
-          backgroundColor: "#96dbfd",
-          color: "#32468c",
+          backgroundColor: "#aaeod5",
+          color: "#dcdde2",
+          fontFamily: "Cormorant Garamond, serif",
           fontWeight: "bold",
           width: "100%",
-          height: "40px",
+          height: "50px",
           boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.22)",
+          marginTop: "10px",
         }}
         onClick={handleLogin}
       >
@@ -97,7 +124,16 @@ function FormLogin() {
           onClick={handleLoginWithGoogle}
         />
       </div>
-      <div style={{ marginTop: "20px", textAlign: "center" }}>
+      <div
+        style={{
+          marginTop: "20px",
+          textAlign: "center",
+          fontFamily: "Cormorant Garamond, serif",
+          fontSize: "20px",
+          color: "#0b6faa",
+          fontWeight: "bolder",
+        }}
+      >
         ¿Do not have an account? <Link to="/SignUp">Sign Up here</Link>
       </div>
       <Snackbar
@@ -118,8 +154,8 @@ function FormLogin() {
           Successful login!
         </MuiAlert>
       </Snackbar>
-    </div>
+    </Container>
   );
-}
+};
 
 export default FormLogin;
