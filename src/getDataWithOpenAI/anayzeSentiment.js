@@ -14,11 +14,25 @@ const analyzeSentiment = (diaryEntry) => {
       temperature: 0,
     }),
   })
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error("Error analyzing sentiment:", error);
+  .then((response) => response.json())
+  .then((responseData) => {
+    console.log(responseData);
+    if (
+      responseData.choices &&
+      responseData.choices[0] &&
+      responseData.choices[0].text
+    ) {
+      const sentimentScore = responseData.choices[0].text.trim();
+      return sentimentScore;
+    } else {
+      console.error("Invalid response from OpenAI:", responseData);
       return null;
-    });
+    }
+  })
+  .catch((error) => {
+    console.error("Error analyzing sentiment:", error);
+    return null;
+  });
 };
 
 export default analyzeSentiment;
