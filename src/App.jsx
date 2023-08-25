@@ -1,10 +1,8 @@
-// src/App.js
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import EntryView from "./views/EntryView";
 import SignUp from "./views/SignUp";
 import MoodRegistration from "./views/MoodRegistration";
 import Trends from "./views/Trends";
-import "./App.css";
 import { AuthProvider } from './context/AuthContext';
 import {ProtectedRouted} from './Components/ProtectedRouted'
 

@@ -1,13 +1,11 @@
 
-import TrendsView from "../Components/Calendar";
-import CurrentDate from "../Components/CurrentDate";
 import NavBar from "../Components/NavBar";
+import TrendsAndCalendar from "../Components/TrendsAndCalendar";
 function Trends() {
   return (
     <>
       <NavBar/>
-      <CurrentDate />
-      <TrendsView />
+      <TrendsAndCalendar />
     </>
   );
 }

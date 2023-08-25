@@ -1,5 +1,5 @@
 import RegistrationForm from "../Components/RegistrationForm";
-import backgroundImage from "../assets/back.jpg";
+import backgroundImage from "../assets/fondo.jpg";
 import { styled } from "@mui/material";
 
 const BackgroundContainer = styled("div")({
@@ -17,7 +17,6 @@ const SignUp = () => {
   return (
     <>
       <BackgroundContainer>
-        {" "}
         <RegistrationForm />
       </BackgroundContainer>
     </>
