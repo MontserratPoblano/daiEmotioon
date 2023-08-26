@@ -19,6 +19,7 @@ import logo2 from "../assets/logo2.png";
 import useAuth from "../context/authFunctions";
 import { useNavigate } from "react-router-dom";
 
+
 function NavBar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { currentUser,logOut } = useAuth();
@@ -38,15 +39,17 @@ function NavBar() {
   }
 
   return (
-    <AppBar position="static" style={{ backgroundColor: "#96dbfd" }}>
+    <AppBar position="static" style={{ backgroundColor: "#aaeod5",
+    
+    fontWeight: "bold",fontSize:"20px" }}>
       <Toolbar>
         <IconButton
           edge="start"
-          color="#32468c"
+          
           aria-label="menu"
           onClick={toggleDrawer(true)}
         >
-          <MenuIcon />
+          <MenuIcon  />
         </IconButton>
         <WelcomeMessage username={currentUser.displayName  || currentUser.email} />
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>

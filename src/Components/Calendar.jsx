@@ -212,6 +212,7 @@ function TrendsView({ sentimentData }) {
       sad: "😢",
       neutral: "😐",
       angry: "😡",
+      relaxed: "😌"
     };
     return moodEmojis[mood] || "❓";
   };
