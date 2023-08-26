@@ -49,8 +49,6 @@ function RegistroMoodForm() {
           currentUserRefValue
         );
         const existEntry = await getSentimentForToday(sentimentDataCollection);
-        console.log(existEntry,"true")
-        console.log(existEntry)
         if (existEntry) {
           setMessageModal(true);
           setDiaryEntry("");
