@@ -2,32 +2,43 @@ import TrendsView from "../Components/Calendar";
 import MoodTrendChart from "./MoodTrendChart";
 import CurrentDate from "../Components/CurrentDate";
 import { useAuth } from "../context/authFunctions";
-import { db } from "../firebase/firebaseConfig";
-import { doc, collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
+import getUserSentimentData from "../firebase/getUserSentimentData"; // Importa la función
 
 function TrendsAndCalendar() {
   const { currentUser } = useAuth();
   const [sentimentData, setSentimentData] = useState([]);
 
+  // useEffect(() => {
+  //   const fetchMoodEntries = async () => {
+  //     if (currentUser) {
+  //       const userDocRef = getCurrentUserRef(currentUser.uid);
+  //       const sentimentDataCollection = collection(userDocRef, "sentimentData");
+  //       const sentimentDataSnapshot = await getDocs(sentimentDataCollection);
+
+  //       // const sentimentDataArray = sentimentDataSnapshot.docs.map((doc) => doc.data());
+  //       const sentimentDataArray = sentimentDataSnapshot.docs.map((doc) =>
+  //         doc.data()
+  //       );
+  //       setSentimentData(sentimentDataArray);
+  //     }
+  //   };
+
+  //   fetchMoodEntries();
+  // }, [currentUser]);
+  // console.log(sentimentData);
   useEffect(() => {
     const fetchMoodEntries = async () => {
       if (currentUser) {
-        const userDocRef = doc(db, "users", currentUser.uid);
-        const sentimentDataCollection = collection(userDocRef, "sentimentData");
-        const sentimentDataSnapshot = await getDocs(sentimentDataCollection);
-
-        // const sentimentDataArray = sentimentDataSnapshot.docs.map((doc) => doc.data());
-        const sentimentDataArray = sentimentDataSnapshot.docs.map((doc) =>
-          doc.data()
-        );
+        const sentimentDataArray = await getUserSentimentData(currentUser);
         setSentimentData(sentimentDataArray);
       }
     };
 
     fetchMoodEntries();
   }, [currentUser]);
+
   console.log(sentimentData);
 
   return (

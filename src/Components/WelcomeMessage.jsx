@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 
 function WelcomeMessage({ username }) {
   return (
-    <Typography variant="h6" color="textSecondary" align="center" gutterBottom>
+    <Typography variant="h6" color="#dcdde2" fontFamily= "Cormorant Garamond, serif" fontSize="25px" align="center" fontWeight="bold" gutterBottom>
       ¡Welcome, {username}!
     </Typography>
   );

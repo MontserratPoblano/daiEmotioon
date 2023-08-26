@@ -78,11 +78,6 @@ const FormLogin = () => {
         value={user.email}
         onChange={(e) => setUser({ ...user, email: e.target.value })}
         margin="normal"
-        InputProps={{
-          style: {
-            fontFamily: "Cormorant Garamond, serif",
-          },
-        }}
       />
       <TextField
         label="Password"
@@ -92,11 +87,6 @@ const FormLogin = () => {
         value={user.password}
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         margin="normal"
-        InputProps={{
-          style: {
-            fontFamily: "Cormorant Garamond, serif",
-          },
-        }}
       />
       {error && <p style={{ color: "red", padding: "10px" }}>{error}</p>}
       <Button

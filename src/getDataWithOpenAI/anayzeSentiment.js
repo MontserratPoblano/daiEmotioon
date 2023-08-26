@@ -16,7 +16,6 @@ const analyzeSentiment = (diaryEntry) => {
   })
   .then((response) => response.json())
   .then((responseData) => {
-    console.log(responseData);
     if (
       responseData.choices &&
       responseData.choices[0] &&

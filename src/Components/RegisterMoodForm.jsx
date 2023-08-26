@@ -4,8 +4,11 @@ import DiaryInput from "./DiaryInput";
 import useAuth from "../context/authFunctions";
 import analyzeSentiment from "../getDataWithOpenAI/anayzeSentiment";
 import { getCurrentUserRef } from "../firebase/getCurrentUser";
-import handleAnalyzeClick from "../firebase/storeSentiment";
 import { useState } from "react";
+import ModalMood from "./ModalMood";
+import getSentimentDataCollection from "../firebase/getSentimentCollection";
+import getSentimentForToday from "../firebase/getSentimentForToday";
+import addSentimentEntry from "../firebase/addSentimentEntry";
 
 function RegistroMoodForm() {
   const { currentUser } = useAuth();
@@ -14,7 +17,10 @@ function RegistroMoodForm() {
   const [showDailyInput, setShowDailyInput] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-console.log(currentUser.uid)
+  const [showModal, setShowModal] = useState(false);
+  const [sentiment, setSentiment] = useState("");
+  const [messageModal,setMessageModal] = useState(false)
+
   const handleMoodChange = (value) => {
     setSelectedMood(value);
   };
@@ -23,6 +29,7 @@ console.log(currentUser.uid)
     if (selectedMood) {
       setErrorMessage("");
       handleSnackbarOpen();
+      setShowDailyInput(true);
     } else {
       setErrorMessage("Please select a mood before proceeding.");
     }
@@ -33,17 +40,41 @@ console.log(currentUser.uid)
   };
 
   const analyzeSentimentAndSetSentiment = async () => {
-    const sentimentResult = await analyzeSentiment(diaryEntry);
-    if (sentimentResult !== null) {
-      const getCurrentUserRefValue = getCurrentUserRef(currentUser.uid);
-      await handleAnalyzeClick(selectedMood, diaryEntry, sentimentResult, getCurrentUserRefValue, currentUser);
+    try {
+      const sentimentResult = await analyzeSentiment(diaryEntry);
+        setSentiment(sentimentResult);
+      if (sentimentResult !== null) {
+        const currentUserRefValue = getCurrentUserRef(currentUser.uid);
+        const sentimentDataCollection = await getSentimentDataCollection(
+          currentUserRefValue
+        );
+        const existEntry = await getSentimentForToday(sentimentDataCollection);
+        console.log(existEntry,"true")
+        console.log(existEntry)
+        if (existEntry) {
+          setMessageModal(true);
+          setDiaryEntry("");
+          setSelectedMood("");
+          return;
+        }
+        setSentiment(sentimentResult);
+        await addSentimentEntry(
+          sentimentDataCollection,
+          selectedMood,
+          diaryEntry,
+          sentiment,
+          currentUser
+        );
+        
+      }
+    } catch (error) {
+      console.error("Error al analizar el sentimiento:", error);
     }
   };
 
   const handleSubmit = async () => {
-    
-
     await analyzeSentimentAndSetSentiment();
+    setShowModal(true);
     setShowDailyInput(false);
   };
 
@@ -58,10 +89,27 @@ console.log(currentUser.uid)
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h3" align="center" style={{ color: "#32468C", paddingTop: 5 }} gutterBottom>
-        Mood Register
+      <Typography
+        variant="h2"
+        align="center"
+        style={{
+          color: "#32468C",
+          paddingTop: 5,
+          marginTop: 20,
+          fontFamily: "Cormorant Garamond, serif",
+          fontSize: "50px",
+          fontWeight: "bold",
+        }}
+        gutterBottom
+      >
+        Mood Register{"\u{1F33A}"}
       </Typography>
-      <Typography variant="h6" align="center" style={{ color: "#32468b", padding: 2 }} gutterBottom>
+      <Typography
+        variant="h6"
+        align="center"
+        style={{ color: "#32468b", padding: 2 }}
+        gutterBottom
+      >
         How do you feel today?
       </Typography>
       {errorMessage && (
@@ -70,9 +118,16 @@ console.log(currentUser.uid)
         </Alert>
       )}
       {!showDailyInput ? (
-        <MoodSelector onShowDailyInput={handleShowDailyInput} onMoodChange={handleMoodChange} />
+        <MoodSelector
+          onShowDailyInput={handleShowDailyInput}
+          onMoodChange={handleMoodChange}
+        />
       ) : (
-        <DiaryInput diaryEntry={diaryEntry} onDiaryChange={handleDiaryChange} handleSubmit={handleSubmit} />
+        <DiaryInput
+          diaryEntry={diaryEntry}
+          onDiaryChange={handleDiaryChange}
+          handleSubmit={handleSubmit}
+        />
       )}
       <Snackbar
         open={showSuccessMessage}
@@ -85,9 +140,18 @@ console.log(currentUser.uid)
       >
         <Alert severity="success">Mood saved successfully!</Alert>
       </Snackbar>
+      {showModal && (
+        <ModalMood
+          showModal={showModal}
+          closeModal={() => setShowModal(false)}
+          selectedMood={selectedMood}
+          diaryEntry={diaryEntry}
+          sentiment={sentiment}
+          messageModal={messageModal}
+        />
+      )}
     </Container>
   );
 }
 
 export default RegistroMoodForm;
-
