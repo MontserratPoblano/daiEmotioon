@@ -6,6 +6,7 @@ function Trends() {
     <>
       <NavBar/>
       <TrendsAndCalendar />
+      
     </>
   );
 }
