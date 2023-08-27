@@ -55,7 +55,6 @@ const FormLogin = () => {
         padding: "20px",
         height: "auto",
         borderRadius: "10px",
-        border: "1px solid #c1dfe6",
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 1.0)",
         display: "flex",
         flexDirection: "column",
