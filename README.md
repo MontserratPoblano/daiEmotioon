@@ -46,15 +46,19 @@ Para instalar y ejecutar el proyecto en tu entorno local, sigue estos pasos:
 
 1. Asegúrate de tener un editor de texto favorito, npm y Git instalados.
 
-2. Haz un fork o clona este repositorio.
+2. Haz clon de este repositorio.
 
-3. Instala las dependencias ejecutando 
+3. Crea un archivo .env.local basado en el archivo .env.example ubicado en el repositorio y reemplaza los valores de ejemplo con tus propios valores. Por ejemplo: 
+
+        VITE_FIREBASE_API_KEY="apikey"
+
+4. Instala las dependencias ejecutando 
 
         npm install en tu terminal.
 
-4. Ejecuta el proyecto con 
+5. Ejecuta el proyecto con 
 
-        npm run dev.
+        npm run dev
 
 
 ## Autor
