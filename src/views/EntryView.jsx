@@ -1,87 +1,94 @@
-import { Grid, styled, useMediaQuery, useTheme } from "@mui/material";
-import logo2 from "../assets/logo2.png";
+import { Grid, styled } from "@mui/material";
+import logo3 from "../assets/logo3.png";
 import FormLogin from "../Components/FormLogin";
-import backgroundImage from "../assets/fondo.jpg";
+import backgroundImage from "../assets/fondo6.jpg";
 
-const BackgroundContainer = styled("div")(({ theme }) => ({
-  backgroundImage: `url(${backgroundImage})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  width: "100%",
-  height: "100vh",
+const BackgroundContainer = styled("div")(() => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   padding: "0",
-  margin: "0px",
+  margin: "0",
+  width: "100%",
+  height: "100vh",
+  overflow: "hidden",
+  position: "relative",
+  direction: "column",
+}));
 
-  [theme.breakpoints.down("md")]: {
-    height: "auto",
-  },
+const BackgroundImage = styled("div")(() => ({
+  backgroundImage: `url(${backgroundImage})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  width: "100%",
+  height: "100%",
+  position: "absolute",
+  top: 0,
+  left: 0,
+  zIndex: -1,
 }));
 
 function EntryView() {
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
   return (
     <BackgroundContainer>
+      <BackgroundImage />
       <Grid
         container
+        spacing={1}
         justifyContent="center"
-        //  width="80%"
-        width={isSmallScreen ? "100%" : "80%"}
-        overflow="hidden"
+        width="100%"
         alignItems="center"
-        // direction="row"
-        direction={isSmallScreen ? "column" : "row"}
+        direction="row"
+        height="80vh"
       >
-        {!isSmallScreen ? (
-          <Grid
-            item
-            xs={12}
-            md={6}
-            lg={5}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <img
-              src={logo2}
-              alt="Logo"
-              style={{ width: "300px", height: "auto" }}
-            />
-          </Grid>
-        ) : (
-          <Grid
-            item
-            xs={12}
-            md={2}
-            lg={5}
-            justifyContent="center"
-            alignItems="center"
-            marginTop={0}
-            marginBottom={0}
-          >
-            <img
-              src={logo2}
-              alt="Logo"
-              style={{
-                width: "300px",
-                height: "auto",
-                maxHeight: "300px",
-                objectFit: "cover",
-              }}
-            />
-          </Grid>
-        )}
         <Grid
           item
-          xs={12}
-          md={2}
-          lg={4}
-          marginTop={0}
+          xs={5}
+          md={3}
+          lg={3}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <img
+            src={logo3}
+            alt="Logo"
+            style={{
+              width: "200px",
+              height: "auto",
+              maxHeight: "300px",
+              objectFit: "cover",
+            }}
+          />
+          <style>
+            {` @media screen and (max-width: 390px) and (orientation: landscape)  {
+                  img{
+                    max-width:350px
+                    margin-bottom:150px
+                    margin-top:0px
+                    flex-direction:column
+                    height:"50px"
+                    
+                  }`}
+          </style>
+        </Grid>
+        <Grid
+          item
+          xs={9}
+          md={6}
+          lg={5}
+          marginTop={4}
           marginBottom={5}
-          width={isSmallScreen ? "60%" : "80%"}
+          width="100%"
+          height="auto"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
           <FormLogin />
         </Grid>
@@ -89,21 +96,23 @@ function EntryView() {
           item
           xs={12}
           md={6}
-          lg={4}
+          lg={6}
           marginTop={5}
           marginBottom={4}
           style={{
-            marginTop: "5px",
+            marginTop: "3px",
             marginBottom: "6px",
             fontFamily: "Cormorant Garamond, serif",
             fontWeight: "bold",
             textAlign: "center",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <a href="https://www.freepik.es/vector-gratis/diseno-forma-redonda-neumorfica-banner-blanco-vacio_38335529.htm#query=fondos%20para%20paginas%20web&position=31&from_view=keyword&track=ais">
-            Imagen de starline
-          </a>{" "}
-          en Freepik
+          <a href="https://www.freepik.es/vector-gratis/fondo-garabato-dibujado-mano_35392764.htm#page=4&query=fondos%20para%20paginas%20web%20divertidos&position=1&from_view=search&track=ais">
+            Freepik
+          </a>
         </Grid>
       </Grid>
     </BackgroundContainer>

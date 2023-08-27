@@ -7,7 +7,7 @@ function SummaryTrends({content,error}) {
   return (
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel-content" id="panel-header">
-        <Typography variant="h6">Summary</Typography>
+        <Typography variant="h6" >Summary </Typography>
       </AccordionSummary>
       <AccordionDetails>
         {content !== null ? (

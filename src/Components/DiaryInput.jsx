@@ -5,7 +5,14 @@ import SubmitButton from "./SubmitButton";
 function DiaryInput({ diaryEntry, onDiaryChange, handleSubmit }) {
   return (
     <>
-      <Typography variant="h4" align="center" gutterBottom>
+      <Typography
+        variant="h4"
+        align="center"
+        color="#7b545c"
+        fontSize="25px"
+        fontWeight="semibold"
+        gutterBottom
+      >
         Why do you feel this way?
       </Typography>
       <TextField

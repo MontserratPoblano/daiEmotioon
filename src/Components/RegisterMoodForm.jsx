@@ -91,25 +91,18 @@ function RegistroMoodForm() {
         variant="h2"
         align="center"
         style={{
-          color: "#32468C",
+          color: "black",
           paddingTop: 5,
           marginTop: 20,
           fontFamily: "Cormorant Garamond, serif",
-          fontSize: "50px",
+          fontSize: "60px",
           fontWeight: "bold",
         }}
         gutterBottom
       >
         Mood Register{"\u{1F33A}"}
       </Typography>
-      <Typography
-        variant="h6"
-        align="center"
-        style={{ color: "#32468b", padding: 2 }}
-        gutterBottom
-      >
-        How do you feel today?
-      </Typography>
+    
       {errorMessage && (
         <Alert severity="error" style={{ marginBottom: 10 }}>
           {errorMessage}
