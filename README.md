@@ -1,2 +1,2 @@
-# daiEmotioon
+# DaiEmotioon
 Aplicación de registro de emociones haciendo uso de ChatGPT

@@ -1,4 +1,4 @@
-import TrendsView from "../Components/Calendar";
+import TrendsView from "./TrendsView";
 import MoodTrendChart from "./MoodTrendChart";
 import CurrentDate from "../Components/CurrentDate";
 import { useAuth } from "../context/authFunctions";
@@ -7,6 +7,7 @@ import { Typography } from "@mui/material";
 import getUserSentimentData from "../firebase/getUserSentimentData"; // Importa la función
 import SummaryTrends from "./SummaryTrends";
 import getLastSevenElements from "../utils/getTrends";
+import { Grid } from "@mui/material";
 
 import generateSummary from "../getDataWithOpenAI/generateSummary";
 
@@ -50,17 +51,42 @@ function TrendsAndCalendar() {
 
   return (
     <>
-     <div style={{ display: "flex", flexDirection: "column", border:"1px solid black" }}>
-     <Typography variant="h5" align="center" marginTop={10} style={{ border:"1px solid black" }}>
-                MOOD TRENDS 
+    <Grid container spacing={2}>
+    <Grid item xs={12}  style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection:"column",
+              width:"100%"
+            }}>
+     <Typography variant="h5" align="center"style={{
+          color: "black",
+          paddingTop: 5,
+          marginTop: 20,
+          fontFamily: "Cormorant Garamond, serif",
+          fontSize: "60px",
+          fontWeight: "bold",
+        }}>
+                Mood Trends {"\u{1F33A}"}
               </Typography>
      <CurrentDate variant="h5" align="center" />
-     </div>
-    <div style={{ display: "flex", flexDirection: "row", border:"1px solid black" }}>
+     </Grid>
+</Grid>
+<Grid container spacing={2} justifyContent="center" alignItems="center">
+<Grid item xs={12} md={3}>
       <TrendsView sentimentData={sentimentData} />
+      </Grid>
+      <Grid item xs={12} md={7}>
       <MoodTrendChart sentimentData={sentimentData} />
-      <SummaryTrends content={summaryContent} error={error}/> 
-      </div>
+      </Grid>
+  <Grid item xs={14}></Grid>
+      <SummaryTrends content={summaryContent} error={error} style={{
+          fontFamily: "Cormorant Garamond, serif",
+          fontSize: "20px",
+          fontWeight: "bold",
+        }}/> 
+      </Grid>
+    
     </>
   );
 }

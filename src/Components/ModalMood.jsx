@@ -9,26 +9,24 @@ function ModalMood({
   sentiment,
   messageModal,
 }) {
+  const moodEmojis = {
+    happy: "😄",
+    sad: "😢",
+    neutral: "😐",
+    angry: "😡",
+    relaxed: "😌",
+  };
+  const moodIconsAnalysis = {
+    Positive: "😄",
+    Negative: "😔",
+    Neutral: "😐",
+  };
 
-
-const moodEmojis = {
-  happy : "😄",
-  sad: "😢",
-  neutral: "😐",
-  angry: "😡",
-  relaxed: "😌"
-};
-const moodIconsAnalysis = {
-  Positive: "😄",
-  Negative: "😔",
-  Neutral: "😐",
-};
-
-const moodColors = {
-  Positive: "#00A300", // Verde
-  Negative: "#FF5733", // Rojo
-  Neutral: "#FFD700",  // Amarillo
-};
+  const moodColors = {
+    Positive: "#00A300", // Verde
+    Negative: "#FF5733", // Rojo
+    Neutral: "#FFD700", // Amarillo
+  };
 
   return (
     <Modal open={showModal} onClose={closeModal}>
@@ -38,16 +36,31 @@ const moodColors = {
           backgroundColor: "#fff",
           padding: 20,
           borderRadius: 10,
+          fontFamily: "Cormorant Garamond, serif",
         }}
       >
         {messageModal ? (
-          <Typography>An Entry for today exists</Typography>
+          <Typography
+            style={{
+              color: "#0b6faa",
+              fontFamily: "Cormorant Garamond, serif",
+              fontSize: "20px",
+              fontWeight: "bolder",
+            }}
+          >
+            An Entry for today exists
+          </Typography>
         ) : (
           <>
             <Typography variant="h6">Mood Analysis</Typography>
-            <Typography>Your Mood today is: {selectedMood}: {moodEmojis[selectedMood]}</Typography>
+            <Typography>
+              Your Mood today is: {selectedMood}: {moodEmojis[selectedMood]}
+            </Typography>
             <Typography>You felt that way because : {diaryEntry}</Typography>
-            <Typography style={{ color: moodColors[sentiment || "unknown"] }}>Your status analysis is: {sentiment}{moodIconsAnalysis[sentiment]}</Typography>
+            <Typography style={{ color: moodColors[sentiment || "unknown"] }}>
+              Your status analysis is: {sentiment}
+              {moodIconsAnalysis[sentiment]}
+            </Typography>
           </>
         )}
       </div>

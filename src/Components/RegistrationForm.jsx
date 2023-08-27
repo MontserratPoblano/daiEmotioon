@@ -5,12 +5,10 @@ import { Button, TextField, Link, Typography, Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 
 const backgroundStyle = {
-  width: "30%",
+  width: "100%",
   height: "auto",
-  marginLeft: "20%",
   padding: "20px",
   color: "#32468",
-  border: "2px solid #d8dadc",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
   borderRadius: "20px",
   
@@ -51,7 +49,7 @@ function RegistrationForm() {
         variant="h5"
         align="center"
         gutterBottom
-        style={{  color: "#0b6faa", fontFamily: "Cormorant Garamond, serif", fontSize: "25px", fontWeight:"bolder" }}
+        style={{  color: "black", fontFamily: "Cormorant Garamond, serif", fontSize: "25px", fontWeight:"bolder" }}
       >
         Create an Account
       </Typography>
@@ -87,10 +85,11 @@ function RegistrationForm() {
       <Button
         variant="contained"
         style={{
-          backgroundColor: "#aaeod5",
-          color: "#dcdde2",
+          backgroundColor: "#ebb3fc",
+          color: "black",
           fontFamily: "Cormorant Garamond, serif",
-          fontWeight: "bold",
+          fontWeight: "bolder",
+          fontSize:"16px",
           width: "100%",
           boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.16)",
         }}
@@ -98,7 +97,7 @@ function RegistrationForm() {
       >
         Register
       </Button>
-      <div style={{ marginTop: "20px", textAlign: "center", fontFamily: "Cormorant Garamond, serif",fontSize:"20px", fontWeight:"bold",color: "#0f7daa"  }}>
+      <div style={{ marginTop: "20px", textAlign: "center", fontFamily: "Cormorant Garamond, serif",fontSize:"20px", fontWeight:"bold",color: "black"  }}>
         Already have an account? <Link href="/">Login here</Link>
       </div>
       <Snackbar

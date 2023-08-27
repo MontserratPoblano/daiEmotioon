@@ -1,8 +1,5 @@
-
 import { Typography } from "@mui/material";
 import { PropTypes } from "prop-types";
-
-
 
 function SentimentAnalysisDisplay({ sentimentScore }) {
   return (
@@ -12,11 +9,8 @@ function SentimentAnalysisDisplay({ sentimentScore }) {
   );
 }
 
-
-
 SentimentAnalysisDisplay.propTypes = {
-    sentimentScore: PropTypes.string.isRequired,
-  };
-
+  sentimentScore: PropTypes.string.isRequired,
+};
 
 export default SentimentAnalysisDisplay;
