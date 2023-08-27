@@ -17,7 +17,7 @@
 
 ## Introducción  :pencil2:
 
- Esta aplicación te ofrece la posibilidad de registrar y comprender tus emociones de manera , fue elaborada aprovechando las sugerencias proporcionadas por ChatGPT. Además, se ha integrado la potente API de OpenAI para realizar las solicitudes HTTP necesarias para analizar el estado emocional, la generación de un resumen coherente de tu estado emocional a lo largo de un período de tiempo determinado.
+ Esta aplicación te ofrece la posibilidad de registrar y comprender tus emociones , fue elaborada aprovechando las sugerencias proporcionadas por ChatGPT. Además, se ha integrado la potente API de OpenAI para realizar las solicitudes HTTP necesarias para analizar el estado emocional,así como la generación de un resumen coherente de tu estado emocional a lo largo de un período de tiempo determinado.
 
 ## Conversación con ChatGPT
 
