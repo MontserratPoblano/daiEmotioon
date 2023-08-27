@@ -15,15 +15,6 @@
 
 [6. Autor](#autor)
 
-
-
-
-2. Conversación con ChatGPT
-3. Tecnologías usadas
-4. Pantallas 
-5. Instalación 
-6. Autor
-
 ## Introducción  :pencil2:
 
  Esta aplicación te ofrece la posibilidad de registrar y comprender tus emociones de manera , fue elaborada aprovechando las sugerencias proporcionadas por ChatGPT. Además, se ha integrado la potente API de OpenAI para realizar las solicitudes HTTP necesarias para analizar el estado emocional, la generación de un resumen coherente de tu estado emocional a lo largo de un período de tiempo determinado.
