@@ -48,15 +48,17 @@ Para instalar y ejecutar el proyecto en tu entorno local, sigue estos pasos:
 
 2. Haz clon de este repositorio.
 
-3. Crea un archivo .env.local basado en el archivo .env.example ubicado en el repositorio y reemplaza los valores de ejemplo con tus propios valores. Por ejemplo: 
+   git clone https://github.com/MontserratPoblano/daiEmotioon.git
+
+4. Crea un archivo .env.local basado en el archivo .env.example ubicado en el repositorio y reemplaza los valores de ejemplo con tus propios valores. Por ejemplo: 
 
         VITE_FIREBASE_API_KEY="apikey"
 
-4. Instala las dependencias ejecutando 
+5. Instala las dependencias ejecutando 
 
         npm install en tu terminal.
 
-5. Ejecuta el proyecto con 
+6. Ejecuta el proyecto con 
 
         npm run dev
 
