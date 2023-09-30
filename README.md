@@ -54,9 +54,9 @@ Para instalar y ejecutar el proyecto en tu entorno local, sigue estos pasos:
 
         VITE_FIREBASE_API_KEY="apikey"
 
-5. Instala las dependencias ejecutando 
+5. Instala las dependencias ejecutando en tu terminal 
 
-        npm install en tu terminal.
+        npm install 
 
 6. Ejecuta el proyecto con 
 
