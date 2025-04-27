@@ -1,21 +1,17 @@
 # DaiEmotioon
 
-## Tabla de contenido
+## Tabla de contenido.
 
 
-[1. Instalación](#instalación)
+1. [Introducción](#introducción)
+2. [Conversación con ChatGPT](#conversación-con-chatgpt)
+3. [Tecnologías usadas](#tecnologías-usadas)
+4. [Pantallas](#pantallas)
+5. [Instalación](#instalación)
+6. [Autor](#autor)
 
-[2. Conversación con ChatGPT](#Conversación-con-ChatGPT)
 
-[3. Tecnologías usadas](#Tecnologías-usadas)
-
-[4. Pantallas](#pantallas)
-
-[5. Instalación](#instalación)
-
-[6. Autor](#autor)
-
-## Introducción  :pencil2:
+## Introducción
 
  Esta aplicación te ofrece la posibilidad de registrar y comprender tus emociones , fue elaborada aprovechando las sugerencias proporcionadas por ChatGPT. Además, se ha integrado la potente API de OpenAI para realizar las solicitudes HTTP necesarias para analizar el estado emocional,así como la generación de un resumen coherente de tu estado emocional a lo largo de un período de tiempo determinado.
 
